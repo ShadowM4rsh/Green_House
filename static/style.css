@@ -1,0 +1,47 @@
+table {
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+body {
+    background: url('img_2.png');
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       -o-background-size: cover;
+       background-size: cover;
+
+
+}
+.text {
+    font-weight: bold;
+}
+.btnn {
+    height:26px;
+    width:52px;
+    position: relative; bottom: 17px;
+    background: transparent;
+    border: none !important;
+    font-size:0;
+}
+
+.form-check {
+    position: relative; top: 13px; left: 25px;
+    scale: 1.3;
+}
+.v {
+    background-color: #0000007d;
+    border-radius: 15px;
+    color: white;
+    padding: 5px;
+    margin: 0 auto;
+    width:800px;
+    font-size: 20px;
+    text-align: center;
+}
+.qwerty {
+    width: 130px;
+    height: 50px;
+}
+.a {
+    color: red;
+}

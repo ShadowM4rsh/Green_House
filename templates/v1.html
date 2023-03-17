@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>Управление</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body class="container-fluid px-4">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Переключение режима</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Управление</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/print">Статистика</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/set">Настройки теплицы</a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+    <table class="table table-light table-bordered border border-dark align-middle text-center table-hover w-auto p-3 ">
+        
+        <thead class="table-dark">
+            <tr>
+                <th>Название</th>
+                <th>Значение</th>
+                <th>Название</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(12) %}
+            <tr>
+                <td><span class="text">{{names[i]}}</span></td>
+                <td><span class="text">{{menu[i]}}</span></td>
+                <td><span class="text">{{names[i + 11]}}</span></td>
+                {% if i + 11 >= 14 %}
+                {%if menu[i + 11] == 1 %}
+                {%if i == 3 %}
+                <td>
+                    <form action="/extra_mode" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл">
+                    </form>
+                </td>
+                {%elif i == 4 %}
+                {% if flag == True %}
+                <td>
+                    <form action="/door" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/door" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {% endif %}
+                {%elif i == 11 %}
+                {% if flag_3 == True %}
+                <td>
+                    <form action="/watering_garden_all" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/watering_garden_all" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {% endif %}
+                {% else %}
+                {% if flag_2 == True %}
+                <td>
+                    <form action="/watering_garden_{{i - 4}}" method="POST">
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/watering_garden_{{i - 4}}" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {%endif%}
+                {%endif%}
+                {% else %}
+                {%if i == 3 %}
+                <td>
+                    <form action="/extra_mode" method="POST">
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        </div>
+                        <input type="submit" class="btnn" value="Вкл">
+                    </form>
+                </td>
+                {%elif i == 4 %}
+                {% if flag == True %}
+                <td>
+                    <form action="/door" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        </div>
+                        <input type="submit" class="btnn" value="Вкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/door" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {%endif%}
+                {%elif i == 11 %}
+                {% if flag_3 == True %}
+                <td>
+                    <form action="/watering_garden_all" method="POST">
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        </div>
+                        <input type="submit" class="btnn" value="Вкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/watering_garden_all" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {%endif%}
+                {% else %}
+                {% if flag_2 == True %}
+                <td>
+                    <form action="/watering_garden_{{i - 4}}" method="POST">
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        </div>
+                        <input type="submit" class="btnn" value="Вкл">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    <form action="/watering_garden_{{i - 4}}" method="POST">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                   disabled>
+                        </div>
+                        <input type="submit" class="btnn" value="Выкл" disabled>
+                    </form>
+                </td>
+                {%endif%}
+                {%endif%}
+                {% endif %}
+                {% else %}
+                <td><span class="text">{{menu[i + 11]}}</span></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>Статистика</title>
+</head>
+
+<body class="container-fluid px-4">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Переключение режима</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Управление</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/print">Статистика</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/set">Настройки теплицы</a>
+        </li>
+    </div>
+  </div>
+</nav>
+        <form class='v' name="test" method="post" action="/send">
+        <p>
+            <h3>Пределы температуры:</h3> Минимальное значение:
+            <input type="text" name="min_temp" value="{{a}}" size="2">
+            Максимальное значение:
+            <input type="text" name="max_temp" value="{{b}}" size="2">
+        </p>
+        <p>
+            <h3>Пределы влажности почвы:</h3><p></p>
+            Минимальное значение:
+            <input type="text" name="min_soil_hud" value="{{c}}" size="2">
+            Максимальное значение:
+            <input type="text" name="max_soil_hud" value="{{d}}" size="2">
+        </p>
+        <p>
+            <h3>Пределы влажности воздуха:</h3> Минимальное значение:
+            <input type="text" name="min_air_hud" value="{{e}}" size="2">
+            Максимальное значение:
+            <input type="text" name="max_air_hud" value="{{f}}" size="2">
+        </p>
+            <p class="a">{{text}}</p>
+        <p><input class="btn btn-secondary qwerty" type="submit" value="Отправить"></p>
+    </form>
+</body>
+</html>
